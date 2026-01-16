@@ -5,15 +5,197 @@
 <title>CN Lab Programs (1–5)</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
-body{font-family:Arial,Helvetica,sans-serif;background:#f4f6f8;padding:20px}
-h1{text-align:center;color:#1f2937}
-h2,h3{color:#111827;margin-top:30px}
-button{padding:10px 18px;margin:8px;border:none;border-radius:6px;background:#2563eb;color:#fff;cursor:pointer;font-size:14px}
-button:hover{background:#1d4ed8}
-pre{background:#0f172a;color:#e5e7eb;padding:20px;border-radius:8px;overflow-x:auto;font-size:14px}
+/* ========== COLOR SYSTEM ========== */
+:root{
+  --bg-main:#1c1f24;        /* graphite */
+  --bg-texture:#242832;     /* layered depth */
+  --card:#2a2f3a;           /* charcoal card */
+  --border:#343a46;
+
+  --text-main:#e6e7eb;      /* off-white */
+  --text-soft:#a8acb8;      /* muted */
+
+  --accent:#f59e0b;         /* warm amber */
+  --accent-2:#84a98c;       /* sage green */
+}
+
+/* ========== BASE ========== */
+*{ box-sizing:border-box }
+html{ scroll-behavior:smooth }
+
+body{
+  margin:0;
+  padding:22px;
+  font-family:Inter,Segoe UI,Roboto,Arial,sans-serif;
+  color:var(--text-main);
+
+  background:
+    radial-gradient(circle at 15% 20%, rgba(245,158,11,.12), transparent 40%),
+    radial-gradient(circle at 80% 60%, rgba(132,169,140,.12), transparent 45%),
+    linear-gradient(180deg,var(--bg-texture),var(--bg-main));
+
+  min-height:100vh;
+  overflow-x:hidden;
+}
+
+/* ========== BACKGROUND FLOW TEXT ========== */
+.bg-flow{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:-1;
+  overflow:hidden;
+}
+
+.bg-flow span{
+  position:absolute;
+  font-size:1.05rem;
+  font-weight:600;
+  color:var(--accent);
+  opacity:.28;
+  white-space:nowrap;
+  animation:drift linear infinite;
+  text-shadow:0 0 12px rgba(245,158,11,.35);
+}
+
+/* lanes */
+.bg-flow span:nth-child(1){ top:12%; animation-duration:24s }
+.bg-flow span:nth-child(2){ top:28%; animation-duration:30s }
+.bg-flow span:nth-child(3){ top:44%; animation-duration:27s }
+.bg-flow span:nth-child(4){ top:60%; animation-duration:34s }
+.bg-flow span:nth-child(5){ top:76%; animation-duration:31s }
+
+@keyframes drift{
+  from{ transform:translateX(-130%) }
+  to{ transform:translateX(130vw) }
+}
+
+/* ========== HEADINGS ========== */
+h1{
+  text-align:center;
+  font-weight:600;
+  letter-spacing:.4px;
+  margin-bottom:14px;
+}
+h2{
+  margin-top:0;
+  color:#f3f4f6;
+}
+h3{
+  color:var(--accent);
+}
+
+/* ========== BUTTONS ========== */
+button{
+  padding:9px 16px;
+  margin:6px;
+  border-radius:10px;
+  border:1px solid var(--border);
+  background:linear-gradient(135deg,#2f3545,#232836);
+  color:var(--text-main);
+  cursor:pointer;
+  font-size:13px;
+  transition:transform .2s ease, box-shadow .2s ease;
+}
+button:hover{
+  transform:translateY(-2px);
+  box-shadow:0 10px 28px rgba(0,0,0,.45);
+}
+
+/* ========== CARDS ========== */
+section{
+  background:var(--card);
+  max-width:1100px;
+  margin:34px auto;
+  padding:22px;
+  border-radius:16px;
+  border:1px solid var(--border);
+  box-shadow:
+    0 20px 40px rgba(0,0,0,.45),
+    inset 0 1px 0 rgba(255,255,255,.03);
+  animation:cardIn .5s ease both;
+}
+
+@keyframes cardIn{
+  from{ opacity:0; transform:translateY(14px) }
+  to{ opacity:1; transform:none }
+}
+
+/* ========== CODE BLOCKS ========== */
+pre{
+  background:#171a21;
+  color:#e6e7eb;
+  padding:20px;
+  border-radius:14px;
+  overflow-x:auto;
+  font-size:14px;
+  border:1px solid #2b2f3a;
+}
+pre code{
+  font-family:JetBrains Mono,Consolas,monospace;
+}
+
+/* ========== MOBILE ========== */
+@media(max-width:768px){
+  body{ padding:14px }
+  section{ padding:16px }
+}
+/* ========== BACKGROUND FLOW TEXT (LOUD VERSION) ========== */
+.bg-flow{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:-1;
+  overflow:hidden;
+}
+
+.bg-flow span{
+  position:absolute;
+  font-size:3.2rem;              /* 🔥 BAHUT BADA */
+  font-weight:800;
+  letter-spacing:1px;
+  white-space:nowrap;
+
+  /* high contrast */
+  color:#f59e0b;
+  opacity:.38;
+
+  /* glow so clearly dikhe */
+  text-shadow:
+    0 0 10px rgba(245,158,11,.55),
+    0 0 30px rgba(245,158,11,.35);
+
+  animation:drift linear infinite;
+}
+
+/* multiple lanes with different speeds */
+.bg-flow span:nth-child(1){ top:10%; animation-duration:20s }
+.bg-flow span:nth-child(2){ top:26%; animation-duration:26s }
+.bg-flow span:nth-child(3){ top:42%; animation-duration:22s }
+.bg-flow span:nth-child(4){ top:58%; animation-duration:30s }
+.bg-flow span:nth-child(5){ top:74%; animation-duration:24s }
+.bg-flow span:nth-child(6){ top:88%; animation-duration:34s }
+
+@keyframes drift{
+  from{ transform:translateX(-150%) }
+  to{ transform:translateX(150vw) }
+}
+
 </style>
+
 </head>
 <body>
+<div class="bg-flow">
+  <span>👀 STILL COPYING?</span>
+  <span>😐 KHUD LIKH LE BHAI</span>
+  <span>🤡 VIVA ME KYA BOLEGA?</span>
+  <span>🧠 DIMAG ON KAR</span>
+  <span>📋 COPY ≠ CONFIDENCE</span>
+  <span>😭 SHARAM KAR DOST</span>
+  <span>🫵 DEKH LIYA🧪 PRACTICE KAR</span>
+</div>
+
+
 
 <!-- 👇👇 ONLY ADDED THESE TWO BUTTONS 👇👇 -->
 <button onclick="document.getElementById('cn-start').scrollIntoView()">CN</button>
@@ -31,6 +213,11 @@ pre{background:#0f172a;color:#e5e7eb;padding:20px;border-radius:8px;overflow-x:a
 <button onclick="document.getElementById('p3').scrollIntoView()">Program 3</button>
 <button onclick="document.getElementById('p4').scrollIntoView()">Program 4</button>
 <button onclick="document.getElementById('p5').scrollIntoView()">Program 5</button>
+<button onclick="document.getElementById('p6').scrollIntoView()">Program 6</button>
+<button onclick="document.getElementById('p7').scrollIntoView()">Program 7</button>
+<button onclick="document.getElementById('p8').scrollIntoView()">Program 8</button>
+<button onclick="document.getElementById('p9').scrollIntoView()">Program 9</button>
+<button onclick="document.getElementById('p10').scrollIntoView()">Program 10</button>
 
 <section id="p1">
 <h2>1. TCP/IP Socket Programming – File Transfer</h2>
@@ -278,6 +465,437 @@ int main() {
 }
 </code></pre>
 </section>
+<section id="p6">
+<h2>6. Distance Vector Routing Algorithm</h2>
+
+<pre><code>
+#include &lt;stdio.h&gt;
+#define INF 999
+
+int main() {
+ int nodes;
+ int cost[10][10], dist[10][10], nextHop[10][10];
+
+ printf("Enter number of nodes: ");
+ scanf("%d", &nodes);
+
+ printf("Enter cost matrix (use %d for INF):\n", INF);
+ for (int i = 0; i < nodes; i++) {
+  for (int j = 0; j < nodes; j++) {
+   scanf("%d", &cost[i][j]);
+   dist[i][j] = cost[i][j];
+
+   if (i == j)
+    nextHop[i][j] = i;
+   else if (cost[i][j] != INF)
+    nextHop[i][j] = j;
+   else
+    nextHop[i][j] = -1;
+  }
+ }
+
+ // Distance Vector Algorithm (Bellman-Ford)
+ int updated;
+ do {
+  updated = 0;
+  for (int i = 0; i < nodes; i++) {
+   for (int j = 0; j < nodes; j++) {
+    for (int k = 0; k < nodes; k++) {
+     if (dist[i][k] + dist[k][j] < dist[i][j]) {
+      dist[i][j] = dist[i][k] + dist[k][j];
+      nextHop[i][j] = nextHop[i][k];
+      updated = 1;
+     }
+    }
+   }
+  }
+ } while (updated);
+
+ // Print routing tables
+ for (int i = 0; i < nodes; i++) {
+  printf("\nRouting table for Router %d:\n", i + 1);
+  printf("Destination\tNext Hop\tCost\n");
+
+  for (int j = 0; j < nodes; j++) {
+   printf(" %d\t\t", j + 1);
+   if (nextHop[i][j] == -1)
+    printf(" - \t\t");
+   else
+    printf(" %d \t\t", nextHop[i][j] + 1);
+   printf("%d\n", dist[i][j]);
+  }
+ }
+ return 0;
+}
+</code></pre>
+
+<section id="p7">
+<h2>7. Traffic Management using Bucket (Leaky Bucket) Algorithm</h2>
+
+<pre><code>
+#include &lt;stdio.h&gt;
+
+int main() {
+ int bucketSize, outputRate, line, packetRate[25], currentSize = 0;
+
+ // Input bucket size and output rate
+ printf("Enter bucket size and output rate: ");
+ scanf("%d %d", &bucketSize, &outputRate);
+
+ // Input number of lines
+ printf("Enter the number of input lines: ");
+ scanf("%d", &line);
+
+ // Input the packet rate for each line
+ printf("Enter packet rate for %d lines: ", line);
+ for (int i = 0; i < line; i++) {
+  scanf("%d", &packetRate[i]);
+ }
+
+ // Process each packet rate
+ for (int i = 0; i < line; i++) {
+  currentSize += packetRate[i]; // Add packet to the bucket
+
+  // Check if bucket overflows
+  if (currentSize <= bucketSize) {
+   printf("Input from line %d with rate %d added to the bucket. Current size: %d\n",
+          i + 1, packetRate[i], currentSize);
+  } else {
+   currentSize -= packetRate[i]; // Discard packet if overflow
+   printf("Input from line %d with rate %d discarded. Current size: %d\n",
+          i + 1, packetRate[i], currentSize);
+  }
+ }
+
+ // Output the packets at the specified output rate
+ if (currentSize <= outputRate) {
+  printf("All packets sent at output rate %d. Bucket empty.\n", currentSize);
+  currentSize = 0;
+ } else {
+  currentSize -= outputRate;
+  printf("Packets sent at output rate %d. Remaining bucket size: %d\n",
+         outputRate, currentSize);
+ }
+
+ return 0;
+}
+</code></pre>
+
+</section>
+<section id="p8">
+<h2>8. RSA Encryption and Decryption</h2>
+
+<pre><code>
+#include &lt;openssl/rsa.h&gt;
+#include &lt;openssl/pem.h&gt;
+#include &lt;openssl/err.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+#include &lt;stdlib.h&gt;
+
+void handle_errors() {
+ ERR_print_errors_fp(stderr);
+ abort();
+}
+
+RSA* generate_rsa_keypair(int bits) {
+ RSA *rsa = RSA_new();
+ BIGNUM *bn = BN_new();
+ if (!rsa || !bn)
+  handle_errors();
+ if (!BN_set_word(bn, RSA_F4))
+  handle_errors();
+ if (!RSA_generate_key_ex(rsa, bits, bn, NULL))
+  handle_errors();
+ BN_free(bn);
+ return rsa;
+}
+
+int main() {
+ int bits = 2048;
+ RSA *rsa = generate_rsa_keypair(bits);
+
+ const char *message = "Hello, RSA encryption!";
+ unsigned char encrypted[256];
+ unsigned char decrypted[256];
+ int encrypted_length, decrypted_length;
+
+ printf("Original message: %s\n", message);
+
+ encrypted_length = RSA_public_encrypt(
+  strlen(message),
+  (unsigned char*)message,
+  encrypted,
+  rsa,
+  RSA_PKCS1_OAEP_PADDING
+ );
+
+ if (encrypted_length == -1)
+  handle_errors();
+
+ printf("Encrypted message: ");
+ for (int i = 0; i < encrypted_length; i++)
+  printf("%02x", encrypted[i]);
+ printf("\n");
+
+ decrypted_length = RSA_private_decrypt(
+  encrypted_length,
+  encrypted,
+  decrypted,
+  rsa,
+  RSA_PKCS1_OAEP_PADDING
+ );
+
+ if (decrypted_length == -1)
+  handle_errors();
+
+ decrypted[decrypted_length] = '\0';
+ printf("Decrypted message: %s\n", decrypted);
+
+ RSA_free(rsa);
+ return 0;
+}
+</code></pre>
+
+<h3>Sample Output</h3>
+<pre><code>
+Compile with:
+gcc rsa.c -o rsa -lssl -lcrypto
+</code></pre>
+</section>
+
+<section id="p9">
+<h2>9. NS3 Network Simulation Programs</h2>
+
+<h3>(a) Point-to-Point Link with UDP Client–Server</h3>
+<pre><code>
+#include "ns3/core-module.h"
+#include "ns3/network-module.h"
+#include "ns3/internet-module.h"
+#include "ns3/point-to-point-module.h"
+#include "ns3/applications-module.h"
+using namespace ns3;
+
+int main(int argc, char *argv[]) {
+ CommandLine cmd;
+ cmd.Parse(argc, argv);
+
+ NodeContainer nodes;
+ nodes.Create(2);
+
+ PointToPointHelper pointToPoint;
+ pointToPoint.SetDeviceAttribute("DataRate", StringValue("5Mbps"));
+ pointToPoint.SetChannelAttribute("Delay", StringValue("2ms"));
+
+ NetDeviceContainer devices;
+ devices = pointToPoint.Install(nodes);
+
+ InternetStackHelper internet;
+ internet.Install(nodes);
+
+ Ipv4AddressHelper address;
+ address.SetBase("10.1.1.0", "255.255.255.0");
+ Ipv4InterfaceContainer interfaces = address.Assign(devices);
+
+ uint16_t port = 9;
+ UdpServerHelper server(port);
+ ApplicationContainer serverApp = server.Install(nodes.Get(1));
+ serverApp.Start(Seconds(1.0));
+ serverApp.Stop(Seconds(10.0));
+
+ UdpClientHelper client(interfaces.GetAddress(1), port);
+ client.SetAttribute("MaxPackets", UintegerValue(320));
+ client.SetAttribute("Interval", TimeValue(Seconds(0.05)));
+ client.SetAttribute("PacketSize", UintegerValue(1024));
+
+ ApplicationContainer clientApp = client.Install(nodes.Get(0));
+ clientApp.Start(Seconds(2.0));
+ clientApp.Stop(Seconds(10.0));
+
+ pointToPoint.EnablePcapAll("point-to-point-udp");
+
+ Simulator::Run();
+ Simulator::Destroy();
+ return 0;
+}
+</code></pre>
+
+<h3>(b) 802.11b Ad-hoc Network (Fixed RSS)</h3>
+<pre><code>
+#include "ns3/core-module.h"
+#include "ns3/network-module.h"
+#include "ns3/internet-module.h"
+#include "ns3/yans-wifi-helper.h"
+#include "ns3/mobility-helper.h"
+#include "ns3/wifi-module.h"
+#include "ns3/applications-module.h"
+using namespace ns3;
+
+int main(int argc, char *argv[]) {
+ CommandLine cmd;
+ cmd.Parse(argc, argv);
+
+ NodeContainer nodes;
+ nodes.Create(2);
+
+ YansWifiChannelHelper channel = YansWifiChannelHelper::Default();
+ YansWifiPhyHelper phy;
+ phy.SetChannel(channel.Create());
+ phy.Set("RxGain", DoubleValue(0));
+ phy.Set("CcaEdThreshold", DoubleValue(-64));
+ phy.Set("TxPowerStart", DoubleValue(16));
+ phy.Set("TxPowerEnd", DoubleValue(16));
+ phy.Set("RxNoiseFigure", DoubleValue(7));
+
+ WifiHelper wifi;
+ wifi.SetStandard(WIFI_STANDARD_80211b);
+ WifiMacHelper mac;
+ mac.SetType("ns3::AdhocWifiMac");
+
+ NetDeviceContainer devices = wifi.Install(phy, mac, nodes);
+
+ InternetStackHelper internet;
+ internet.Install(nodes);
+
+ Ipv4AddressHelper address;
+ address.SetBase("10.1.2.0", "255.255.255.0");
+ Ipv4InterfaceContainer interfaces = address.Assign(devices);
+
+ MobilityHelper mobility;
+ mobility.SetPositionAllocator("ns3::GridPositionAllocator",
+  "MinX", DoubleValue(0.0),
+  "MinY", DoubleValue(0.0),
+  "DeltaX", DoubleValue(5.0),
+  "DeltaY", DoubleValue(0.0),
+  "GridWidth", UintegerValue(2),
+  "LayoutType", StringValue("RowFirst"));
+ mobility.SetMobilityModel("ns3::ConstantPositionMobilityModel");
+ mobility.Install(nodes);
+
+ UdpServerHelper server(9);
+ ApplicationContainer serverApp = server.Install(nodes.Get(1));
+ serverApp.Start(Seconds(1.0));
+ serverApp.Stop(Seconds(10.0));
+
+ UdpClientHelper client(interfaces.GetAddress(1), 9);
+ client.SetAttribute("MaxPackets", UintegerValue(1));
+ client.SetAttribute("Interval", TimeValue(Seconds(1.0)));
+ client.SetAttribute("PacketSize", UintegerValue(1000));
+
+ ApplicationContainer clientApp = client.Install(nodes.Get(0));
+ clientApp.Start(Seconds(2.0));
+ clientApp.Stop(Seconds(10.0));
+
+ phy.EnablePcap("wifi-adhoc", devices);
+
+ Simulator::Run();
+ Simulator::Destroy();
+ return 0;
+}
+</code></pre>
+</section>
+
+<section id="p10">
+<h2>10. Network Topology Configuration</h2>
+
+<h3>(a) LAN and Internet using Router & Switch</h3>
+<pre><code>
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+
+#define LAN_IP "192.168.0.1"
+#define INTERNET_IP "203.0.113.1"
+#define SUBNET_MASK "255.255.255.0"
+#define GATEWAY "192.168.0.1"
+
+void configure_router(char* interface, char* ip_address, char* subnet_mask) {
+ printf("Configuring Router %s with IP: %s, Subnet: %s\n", interface, ip_address, subnet_mask);
+}
+
+void configure_pc(char* pc_name, char* ip_address, char* gateway) {
+ printf("Configuring %s with IP: %s and Gateway: %s\n", pc_name, ip_address, gateway);
+}
+
+void configure_internet_access(char* router_ip) {
+ printf("Configuring NAT for Internet Access on Router, Router IP: %s\n", router_ip);
+}
+
+void configure_lan_connectivity(char* router_ip, char* lan_gateway) {
+ printf("Routing traffic from LAN (Gateway: %s) to Router with Internet IP: %s\n",
+        lan_gateway, router_ip);
+}
+
+void ping_device(char* source, char* destination) {
+ printf("Pinging from %s to %s...Success!\n", source, destination);
+}
+
+int main() {
+ printf("Starting Network Configuration…\n");
+
+ configure_router("GigabitEthernet0/1", LAN_IP, SUBNET_MASK);
+ configure_router("GigabitEthernet0/0", INTERNET_IP, SUBNET_MASK);
+
+ configure_internet_access(INTERNET_IP);
+ configure_lan_connectivity(LAN_IP, GATEWAY);
+
+ configure_pc("PC1", "192.168.0.2", GATEWAY);
+ configure_pc("PC2", "192.168.0.3", GATEWAY);
+
+ ping_device("PC1", "Internet (203.0.113.1)");
+ ping_device("PC2", "Router (192.168.0.1)");
+
+ printf("Network Configuration Complete!\n");
+ return 0;
+}
+</code></pre>
+
+<h3>(b) VLAN Configuration (Packet Tracer Simulation)</h3>
+<pre><code>
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+
+#define VLAN10 "VLAN10"
+#define VLAN20 "VLAN20"
+
+void configure_vlan(const char* vlan_name) {
+ printf("Creating and configuring %s on switch…\n", vlan_name);
+}
+
+void assign_port_to_vlan(int port, const char* vlan_name) {
+ printf("Assigning port Fa0/%d to %s..\n", port, vlan_name);
+}
+
+void configure_router_subinterface(const char* vlan_name, const char* ip_address) {
+ printf("Configuring Router sub-interface for %s with IP: %s\n", vlan_name, ip_address);
+}
+
+void configure_pc(int pc_id, const char* vlan_name,
+                  const char* ip_address, const char* gateway) {
+ printf("Configuring PC%d in %s with IP: %s and Gateway: %s\n",
+        pc_id, vlan_name, ip_address, gateway);
+}
+
+int main() {
+ configure_vlan(VLAN10);
+ configure_vlan(VLAN20);
+
+ assign_port_to_vlan(1, VLAN10);
+ assign_port_to_vlan(2, VLAN10);
+ assign_port_to_vlan(3, VLAN20);
+ assign_port_to_vlan(4, VLAN20);
+
+ configure_router_subinterface(VLAN10, "192.168.10.1");
+ configure_router_subinterface(VLAN20, "192.168.20.1");
+
+ configure_pc(1, VLAN10, "192.168.10.2", "192.168.10.1");
+ configure_pc(2, VLAN20, "192.168.20.2", "192.168.20.1");
+
+ printf("VLAN Configuration Simulation Complete!\n");
+ return 0;
+}
+</code></pre>
+</section>
+
 <section id="sscd"><h1>SYSTEM SOFTWARE & COMPILER DESIGN LAB</h1></section>
 
 <button onclick="document.getElementById('s1').scrollIntoView()">Program 1</button>
@@ -295,106 +913,93 @@ int main() {
 
 <!-- ===================== S1 ====================== -->
 <section id="s1">
-<h2>1(a) Count characters, words, spaces & lines — LEX</h2>
+<h2>SSCD – Program 1(a): Count lines, words, characters & spaces (LEX)</h2>
+
 <pre><code>
 %{
-int cc=0,wc=0,sc=0,lc=0;
+#include &lt;stdio.h&gt;
+int lc=0,wc=0,cc=0,sc=0;
 %}
 
 %%
-[ ]     {sc++;cc++;}
-[^\t\n ]+ {wc++;cc+=yyleng;}
-[\n]    {lc++;cc++;}
-[\t]    {sc+=8;cc++;}
+[ ]        { sc++; cc++; }
+[\t]       { sc+=8; cc++; }
+[^\t\n ]+  { wc++; cc+=yyleng; }
+[\n]       { lc++; cc++; }
 %%
 
-int main()
+int main(int argc,char *argv[])
 {
- char fname[20];
- printf("Enter a file name:\n");
- scanf("%s",fname);
- yyin=fopen(fname,"r");
+ if(argc&lt;2){
+  printf("Usage: a.out filename\n");
+  return 0;
+ }
+ yyin=fopen(argv[1],"r");
  yylex();
+ printf("Lines=%d Words=%d Spaces=%d Characters=%d\n",
+        lc,wc,sc,cc);
  fclose(yyin);
-
- printf("Characters=%d\nSpaces=%d\nLines=%d\nWords=%d\n",
- cc,sc,lc,wc);
+ return 0;
 }
-</code></pre>
-
-
-<section id="s1">
-<h2>1(b). Count comment lines & remove — LEX</h2>
-<pre><code>
-%{
-int com=0;
-%}
-
-%%
-"/*"([^*]|\n)*"*/"   { com++; fprintf(yyout," "); }
-%%
-
-int main()
-{
-    printf("write a c program\n");
-    yyout = fopen("output.c","w");
-    yylex();
-    fclose(yyout);
-    printf("comment = %d\n", com);
-    return 0;
-}
+int yywrap(){ return 1; }
 </code></pre>
 </section>
 
+<section>
+<h2>SSCD – Program 1(b): Count & remove comments (LEX)</h2>
 
+<pre><code>
+%{
+#include &lt;stdio.h&gt;
+int count=0;
+%}
+
+%%
+"/*"([^*]|\n)*"*/"   { count++; }
+"//".*               { count++; }
+.|\n                 ;
+%%
+
+int main()
+{
+ yylex();
+ printf("Total comment lines = %d\n",count);
+ return 0;
+}
+int yywrap(){ return 1; }
+</code></pre>
+</section>
 
 <!-- ===================== S2 ====================== -->
 <section id="s2">
-<h2>2(a) Recognize arithmetic expression — LEX</h2>
+<h2>SSCD – Program 2(a): Arithmetic expression validation (LEX)</h2>
+
 <pre><code>
 %{
-int opdcount = 0, oprcount = 0;
-int i = 0, j = 0, k = 0;
-char opd[100], opr[100];
+#include &lt;stdio.h&gt;
+int operands=0,operators=0;
 %}
 
-OPERATOR   [+\-\*\/]
-OPERANDS   [a-zA-Z0-9]+
-
 %%
-{OPERATOR} {
-    oprcount++;
-    opr[i++] = yytext[0];
-    opr[i++] = ' ';
-}
-
-{OPERANDS} {
-    opdcount++;
-    for(j = 0; j < yyleng; j++)
-        opd[k++] = yytext[j];
-    opd[k++] = ' ';
-}
-
-.   ;
+[0-9a-zA-Z]+   { operands++; }
+[+\-*/]        { operators++; }
+[ \t\n]+       ;
+.              ;
 %%
 
 int main()
 {
-    yylex();
-
-    if((opdcount - oprcount) != 1)
-        printf("Not valid expression\n");
-    else
-    {
-        printf("Valid expression\n");
-        printf("Operands = %s  Count = %d\n", opd, opdcount);
-        printf("Operators = %s Count = %d\n", opr, oprcount);
-    }
-
-    return 0;
+ yylex();
+ if(operands - operators == 1)
+  printf("Valid Arithmetic Expression\n");
+ else
+  printf("Invalid Arithmetic Expression\n");
+ return 0;
 }
+int yywrap(){ return 1; }
 </code></pre>
 </section>
+<section id="s2">
 
 <h2>2(b) Count identifiers — LEX</h2>
 <pre><code>
@@ -438,251 +1043,204 @@ int yywrap() { return 1; }
 
 <!-- ===================== S3 ====================== -->
 <section id="s3">
-<h2>3 Identifier counter — LEX</h2>
+<h2>SSCD – Program 3: Identifier counter (LEX)</h2>
+
 <pre><code>
 %{
 #include &lt;stdio.h&gt;
-int count=0;
+int id=0;
 %}
 
 %%
-[a-zA-Z_][a-zA-Z0-9_]* {count++;}
-[ \t\n]+ ;
-. ;
+[a-zA-Z_][a-zA-Z0-9_]*   { id++; }
+[ \t\n]+                 ;
+.                        ;
 %%
 
 int main(int argc,char *argv[])
 {
- if(argc>1)
-  yyin=fopen(argv[1],"r");
+ if(argc&lt;2){
+  printf("Usage: a.out filename\n");
+  return 0;
+ }
+ yyin=fopen(argv[1],"r");
  yylex();
- printf("Total identifiers=%d\n",count);
+ printf("Total identifiers = %d\n",id);
+ fclose(yyin);
  return 0;
 }
-int yywrap(){return 1;}
+int yywrap(){ return 1; }
 </code></pre>
 </section>
-
-
 
 <!-- ===================== S4 ====================== -->
 <section id="s4">
-<h2>4(a) Arithmetic Expression Evaluator — YACC</h2>
+<h2>SSCD – Program 4(a): Arithmetic Expression Evaluator (YACC)</h2>
+
 <pre><code>
 %{
-#include <stdio.h>
-#include <ctype.h>
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
 #define YYSTYPE double
 %}
 
-%token num
+%token NUM
 %left '+' '-'
 %left '*' '/'
-%right UMINUS
 
 %%
-lines:
-      /* empty */
-    | lines exp '\n'   { printf("%g\n", $2); }
-    | lines '\n'
-    ;
-
-exp :
-      exp '+' exp      { $$ = $1 + $3; }
-    | exp '-' exp      { $$ = $1 - $3; }
-    | exp '*' exp      { $$ = $1 * $3; }
-    | exp '/' exp      {
-                          if($3 == 0){
-                              printf("Divide by zero error\n");
-                              exit(0);
-                          }
-                          $$ = $1 / $3;
-                       }
-    | '(' exp ')'      { $$ = $2; }
-    | '-' exp %prec UMINUS { $$ = -$2; }
-    | num
-    ;
+E : E '+' E   { $$ = $1 + $3; }
+  | E '-' E   { $$ = $1 - $3; }
+  | E '*' E   { $$ = $1 * $3; }
+  | E '/' E   {
+                if($3 == 0){
+                  printf("Divide by zero error\n");
+                  exit(0);
+                }
+                $$ = $1 / $3;
+              }
+  | '(' E ')' { $$ = $2; }
+  | NUM       { $$ = $1; }
+  ;
 %%
 
-int yylex()
-{
-    int c;
-
-    while((c = getchar()) == ' ' || c == '\t')
-        ;
-
-    if(c == '.' || isdigit(c))
-    {
-        ungetc(c, stdin);
-        scanf("%lf", &yylval);
-        return num;
-    }
-
-    return c;
+int yylex(){
+ scanf("%lf",&yylval);
+ return NUM;
 }
 
-int main()
-{
-    yyparse();
-    return 0;
+int yyerror(){
+ printf("Invalid Expression\n");
+ return 0;
 }
 
-int yyerror(char *s)
-{
-    printf("Error\n");
-    return 0;
-}
-</code></pre>
-
-
-<h2>4(b) Valid Variable — YACC</h2>
-<pre><code>
-%{
-#include <stdio.h>
-#include <ctype.h>
-%}
-
-%token letter digit
-
-%%
-id :
-      letter rest '\n'     { printf("Valid\n"); }
-    | '\n'                 { printf("Invalid\n"); }
-    ;
-
-rest :
-      letter rest
-    | digit rest
-    | /* empty */
-    ;
-%%
-
-int yylex()
-{
-    int c;
-
-    while((c = getchar()) == ' ' || c == '\t')
-        ;
-
-    if(isalpha(c))
-        return letter;
-
-    if(isdigit(c))
-        return digit;
-
-    return c;
-}
-
-int main()
-{
-    yyparse();
-    return 0;
-}
-
-int yyerror(char *s)
-{
-    printf("Error\n");
-    return 0;
+int main(){
+ yyparse();
+ return 0;
 }
 </code></pre>
 </section>
 
 
+
+<section>
+<h2>SSCD – Program 4(b): Valid Variable (YACC)</h2>
+
+<pre><code>
+%{
+#include &lt;stdio.h&gt;
+#include &lt;ctype.h&gt;
+%}
+
+%token LETTER DIGIT
+
+%%
+id : LETTER rest '\n' { printf("Valid Variable\n"); }
+   | '\n'            { printf("Invalid Variable\n"); }
+   ;
+
+rest : LETTER rest
+     | DIGIT rest
+     | /* empty */
+     ;
+%%
+
+int yylex(){
+ char c = getchar();
+ if(isalpha(c)) return LETTER;
+ if(isdigit(c)) return DIGIT;
+ return c;
+}
+
+int yyerror(){
+ printf("Error\n");
+ return 0;
+}
+
+int main(){
+ yyparse();
+ return 0;
+}
+</code></pre>
+</section>
 
 <!-- ===================== S5 ====================== -->
 <section id="s5">
-<h2>5(a) Recognize a^n b where n ≥ 10 — YACC</h2>
+<h2>SSCD – Program 5(a): aⁿb, n ≥ 10 (YACC)</h2>
+
 <pre><code>
 %{
-#include <stdio.h>
-#include <ctype.h>
+#include &lt;stdio.h&gt;
 %}
 
-%token ta tb
+%token A B
 
 %%
-v :
-      ta ta ta ta ta ta ta ta ta ta p '\n'   { printf("Valid\n"); }
-    ;
+S : A A A A A A A A A A T '\n'
+    { printf("Valid String\n"); }
+  ;
 
-p :
-      ta p
-    | tb
-    ;
+T : A T
+  | B
+  ;
 %%
 
-int yylex()
-{
-    int c;
-    while((c = getchar()) == ' ' || c == '\t')
-        ;
-
-    if(c == 'a') return ta;
-    if(c == 'b') return tb;
-    return c;
+int yylex(){
+ char c = getchar();
+ if(c=='a') return A;
+ if(c=='b') return B;
+ return c;
 }
 
-int main()
-{
-    yyparse();
-    return 0;
+int yyerror(){
+ printf("Invalid String\n");
+ return 0;
 }
 
-int yyerror(char *s)
-{
-    printf("Error\n");
-    return 0;
-}
-</code></pre>
-
-
-<h2>5(b) Recognize a^n b^n — YACC</h2>
-<pre><code>
-%{
-#include <stdio.h>
-#include <ctype.h>
-%}
-
-%token ta tb
-
-%%
-S :
-      T '\n'     { printf("Valid\n"); }
-    ;
-
-T :
-      /* empty */
-    | ta T tb
-    ;
-%%
-
-int yylex()
-{
-    int c;
-
-    while((c = getchar()) == ' ' || c == '\t')
-        ;
-
-    if(c == 'a') return ta;
-    if(c == 'b') return tb;
-
-    return c;
-}
-
-int main()
-{
-    yyparse();
-    return 0;
-}
-
-int yyerror(char *s)
-{
-    printf("Error\n");
-    return 0;
+int main(){
+ yyparse();
+ return 0;
 }
 </code></pre>
 </section>
 
+
+<section>
+<h2>SSCD – Program 5(b): aⁿbⁿ (YACC)</h2>
+
+<pre><code>
+%{
+#include &lt;stdio.h&gt;
+%}
+
+%token A B
+
+%%
+S : T '\n' { printf("Valid String\n"); } ;
+
+T : /* empty */
+  | A T B
+  ;
+%%
+
+int yylex(){
+ char c = getchar();
+ if(c=='a') return A;
+ if(c=='b') return B;
+ return c;
+}
+
+int yyerror(){
+ printf("Invalid String\n");
+ return 0;
+}
+
+int main(){
+ yyparse();
+ return 0;
+}
+</code></pre>
+</section>
 
 
 <!-- ===================== S6 ====================== -->
